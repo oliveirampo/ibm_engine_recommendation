@@ -1,0 +1,468 @@
+{
+ "name": "articles",
+ "children": [
+  {
+   "name": "data",
+   "children": [
+    {
+     "name": "analyze",
+     "children": [
+      {
+       "name": "Analyze open data sets with pandas dataframes",
+       "value": 0
+      },
+      {
+       "name": "Analyze open data sets with spark & pixiedust",
+       "value": 1
+      },
+      {
+       "name": "Analyze precipitation data",
+       "value": 2
+      },
+      {
+       "name": "Analyze traffic data from the city of san francisco",
+       "value": 3
+      },
+      {
+       "name": "Use spark r to load and analyze data",
+       "value": 4
+      },
+      {
+       "name": "Analyze open data sets using pandas in a python notebook",
+       "value": 5
+      },
+      {
+       "name": "Using dsx notebooks to analyze github data",
+       "value": 6
+      },
+      {
+       "name": "Analyze ny restaurant data using spark in dsx",
+       "value": 7
+      },
+      {
+       "name": "Analyze facebook data using ibm watson and watson studio",
+       "value": 8
+      },
+      {
+       "name": "Analyze data, build a dashboard with spark and pixiedust",
+       "value": 9
+      }
+     ]
+    },
+    {
+     "name": "big data",
+     "children": [
+      {
+       "name": "Ibm data science experience white paper - sparkr transforming r into a tool for big data analytics",
+       "value": 0
+      },
+      {
+       "name": "How smart catalogs can turn the big data flood into an ocean of opportunity",
+       "value": 1
+      },
+      {
+       "name": "Deep learning with tensorflow course by big data university",
+       "value": 2
+      },
+      {
+       "name": "Improving the roi of big data and analytics through leveraging new sources of data",
+       "value": 3
+      },
+      {
+       "name": "How open api economy accelerates the growth of big data and analytics",
+       "value": 4
+      },
+      {
+       "name": "Big data is better data",
+       "value": 5
+      }
+     ]
+    },
+    {
+     "name": "visualize",
+     "children": [
+      {
+       "name": "Visualize data with the matplotlib library",
+       "value": 0
+      },
+      {
+       "name": "Visualize car data with brunel",
+       "value": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "database",
+   "children": [
+    {
+     "name": "Working with sqlite databases using python and pandas",
+     "value": 0
+    },
+    {
+     "name": "The machine learning database",
+     "value": 1
+    },
+    {
+     "name": "Environment statistics database - water",
+     "value": 2
+    },
+    {
+     "name": "Why relational databases and r?",
+     "value": 3
+    },
+    {
+     "name": "Working with on-premises databases \u2014 step by step",
+     "value": 4
+    },
+    {
+     "name": "Environment statistics database - waste",
+     "value": 5
+    }
+   ]
+  },
+  {
+   "name": "data science",
+   "children": [
+    {
+     "name": "Upload files to ibm data science experience using the command line",
+     "value": 0
+    },
+    {
+     "name": "10 must attend data science, ml and ai conferences in 2018",
+     "value": 1
+    },
+    {
+     "name": "Data science for real-time streaming analytics",
+     "value": 2
+    },
+    {
+     "name": "Ibm data science experience white paper - sparkr transforming r into a tool for big data analytics",
+     "value": 3
+    },
+    {
+     "name": "Deep learning with data science experience",
+     "value": 5
+    },
+    {
+     "name": "This week in data science (may 30, 2017)",
+     "value": 6
+    },
+    {
+     "name": "How to choose a project to practice data science",
+     "value": 7
+    },
+    {
+     "name": "Data tidying in data science experience",
+     "value": 8
+    },
+    {
+     "name": "Data science bowl 2017",
+     "value": 9
+    }
+   ]
+  },
+  {
+   "name": "machine learning",
+   "children": [
+    {
+     "name": "algorithm",
+     "children": [
+      {
+       "name": "Top 10 machine learning algorithms for beginners",
+       "value": 0
+      },
+      {
+       "name": "10 essential algorithms for machine learning engineers",
+       "value": 1
+      },
+      {
+       "name": "Data structures related to machine learning algorithms",
+       "value": 2
+      },
+      {
+       "name": "Modern machine learning algorithms",
+       "value": 3
+      },
+      {
+       "name": "Essentials of machine learning algorithms (with python and r codes)",
+       "value": 4
+      },
+      {
+       "name": "Building custom machine learning algorithms with apache systemml",
+       "value": 5
+      }
+     ]
+    },
+    {
+     "name": "api",
+     "children": [
+      {
+       "name": "Use xgboost, scikit-learn & ibm watson machine learning apis",
+       "value": 0
+      },
+      {
+       "name": "Rapidly build machine learning flows with dsx",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "name": "classif",
+     "children": [
+      {
+       "name": "Classify tumors with machine learning",
+       "value": 0
+      }
+     ]
+    },
+    {
+     "name": "predict",
+     "children": [
+      {
+       "name": "Using machine learning to predict baseball injuries",
+       "value": 0
+      },
+      {
+       "name": "Using machine learning to predict value of homes on airbnb",
+       "value": 1
+      },
+      {
+       "name": "Adoption of machine learning to software failure prediction",
+       "value": 2
+      },
+      {
+       "name": "Using machine learning to predict parking difficulty",
+       "value": 3
+      }
+     ]
+    },
+    {
+     "name": "python",
+     "children": [
+      {
+       "name": "Python machine learning: scikit-learn tutorial",
+       "value": 0
+      },
+      {
+       "name": "Machine learning exercises in python, part 1",
+       "value": 1
+      },
+      {
+       "name": "Essentials of machine learning algorithms (with python and r codes)",
+       "value": 2
+      }
+     ]
+    },
+    {
+     "name": "recommend",
+     "children": [
+      {
+       "name": "Movie recommender system with spark machine learning",
+       "value": 0
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "libraries",
+   "children": [
+    {
+     "name": "keras",
+     "children": [
+      {
+       "name": "Variational auto-encoder for 'frey faces' using keras",
+       "value": 0
+      },
+      {
+       "name": "Using deep learning with keras to predict customer churn",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "name": "pandas",
+     "children": [
+      {
+       "name": "Common excel tasks demonstrated in\u00a0pandas",
+       "value": 0
+      },
+      {
+       "name": "Analyze open data sets with pandas dataframes",
+       "value": 1
+      },
+      {
+       "name": "Simple graphing with ipython and\u00a0pandas",
+       "value": 2
+      },
+      {
+       "name": "Analyze open data sets using pandas in a python notebook",
+       "value": 3
+      },
+      {
+       "name": "The pandas data analysis library",
+       "value": 4
+      },
+      {
+       "name": "Working with sqlite databases using python and pandas",
+       "value": 5
+      }
+     ]
+    },
+    {
+     "name": "regression",
+     "children": [
+      {
+       "name": "Gosales transactions for logistic regression model",
+       "value": 0
+      },
+      {
+       "name": "How to perform a logistic regression in r",
+       "value": 1
+      },
+      {
+       "name": "Simple linear regression? do it the bayesian way",
+       "value": 2
+      },
+      {
+       "name": "A comparison of logistic regression and naive bayes ",
+       "value": 3
+      },
+      {
+       "name": "Higher-order logistic regression for large datasets",
+       "value": 4
+      },
+      {
+       "name": "Build a logistic regression model with wml & dsx",
+       "value": 5
+      },
+      {
+       "name": "A tensorflow regression model to predict house values",
+       "value": 6
+      }
+     ]
+    },
+    {
+     "name": "scikit",
+     "children": [
+      {
+       "name": "Use xgboost, scikit-learn & ibm watson machine learning apis",
+       "value": 0
+      },
+      {
+       "name": "Leverage python, scikit, and text classification for behavioral profiling",
+       "value": 1
+      },
+      {
+       "name": "Python machine learning: scikit-learn tutorial",
+       "value": 2
+      },
+      {
+       "name": "Leverage scikit-learn models with core ml",
+       "value": 3
+      },
+      {
+       "name": "Breast cancer detection with xgboost, wml and scikit",
+       "value": 4
+      },
+      {
+       "name": "From scikit-learn model to cloud with wml client",
+       "value": 5
+      }
+     ]
+    },
+    {
+     "name": "tensorflow",
+     "children": [
+      {
+       "name": "Imitation learning in tensorflow (hopper from openai gym)",
+       "value": 0
+      },
+      {
+       "name": "Deep learning with tensorflow course by big data university",
+       "value": 1
+      },
+      {
+       "name": "Learn tensorflow and deep learning together and now!",
+       "value": 2
+      },
+      {
+       "name": "Tensorflow quick tips",
+       "value": 3
+      },
+      {
+       "name": "Perform sentiment analysis with lstms, using tensorflow",
+       "value": 4
+      },
+      {
+       "name": "Small steps to tensorflow",
+       "value": 5
+      },
+      {
+       "name": "Predict loan applicant behavior with tensorflow neural networking",
+       "value": 6
+      },
+      {
+       "name": "A tensorflow regression model to predict house values",
+       "value": 7
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "name": "model",
+   "children": [
+    {
+     "name": "bayes",
+     "children": [
+      {
+       "name": "Gosales transactions for naive bayes model",
+       "value": 0
+      },
+      {
+       "name": "Bayesian nonparametric models \u2013 stats and bots",
+       "value": 1
+      },
+      {
+       "name": "Build a naive-bayes model with wml & dsx",
+       "value": 2
+      }
+     ]
+    },
+    {
+     "name": "neural",
+     "children": [
+      {
+       "name": "Neural language modeling from scratch (part 1)",
+       "value": 0
+      },
+      {
+       "name": "Build deep learning architectures with neural network modeler",
+       "value": 1
+      }
+     ]
+    },
+    {
+     "name": "regression",
+     "children": [
+      {
+       "name": "Gosales transactions for logistic regression model",
+       "value": 0
+      },
+      {
+       "name": "Build a logistic regression model with wml & dsx",
+       "value": 1
+      },
+      {
+       "name": "A tensorflow regression model to predict house values",
+       "value": 2
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

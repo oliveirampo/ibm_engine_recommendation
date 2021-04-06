@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+
+
+<style>
+.parent {
+  position: relative;
+  top: 0;
+  left: 0;
+    /*color: #00aaaa;*/
+}
+.image1 {
+  position: relative;
+  top: 0;
+  left: 0;
+}
+.image2 {
+    margin: 10px auto 20px;
+  position: absolute;
+  top: 60px;
+  left: 300px;
+}
+
+.marginauto {
+    margin: 10px auto 20px;
+    display: block;
+}
+
+#images{
+    text-align:center;
+    margin:50px auto;
+}
+#images div{
+    margin:0px 20px;
+    display:inline-block;
+    text-decoration:none;
+    color:black;
+ }
+
+.observablehq-chart svg {
+    height: 100px;
+}
+
+</style>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Recommendation Engine</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/blog/">
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <!--plotly    -->
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <link href="static/styles/css/blog.css" rel="stylesheet">
+    <link href="static/styles/css/table.css" rel="stylesheet">
+
+</head>
+<body>
+
+<div class="container">
+    <header class="blog-header py-3">
+        <div class="row flex-auto text-justify align-center">
+            <div class="col-12 d-flex justify-content-end align-items-center">
+
+                <a href="https://github.com/oliveirampo/ibm_engine_recommendation" target=”_blank”>
+                    <svg width="24" height="24" viewBox="0 0 16 16">
+                        <path fill="#828282"
+                            d="M7.999,0.431c-4.285,0-7.76,3.474-7.76,7.761 c0,3.428,2.223,6.337,5.307,7.363c0.388,0.071,0.53-0.168,0.53-0.374c0-0.184-0.007-0.672-0.01-1.32 c-2.159,0.469-2.614-1.04-2.614-1.04c-0.353-0.896-0.862-1.135-0.862-1.135c-0.705-0.481,0.053-0.472,0.053-0.472 c0.779,0.055,1.189,0.8,1.189,0.8c0.692,1.186,1.816,0.843,2.258,0.645c0.071-0.502,0.271-0.843,0.493-1.037 C4.86,11.425,3.049,10.76,3.049,7.786c0-0.847,0.302-1.54,0.799-2.082C3.768,5.507,3.501,4.718,3.924,3.65 c0,0,0.652-0.209,2.134,0.796C6.677,4.273,7.34,4.187,8,4.184c0.659,0.003,1.323,0.089,1.943,0.261 c1.482-1.004,2.132-0.796,2.132-0.796c0.423,1.068,0.157,1.857,0.077,2.054c0.497,0.542,0.798,1.235,0.798,2.082 c0,2.981-1.814,3.637-3.543,3.829c0.279,0.24,0.527,0.713,0.527,1.437c0,1.037-0.01,1.874-0.01,2.129 c0,0.208,0.14,0.449,0.534,0.373c3.081-1.028,5.302-3.935,5.302-7.362C15.76,3.906,12.285,0.431,7.999,0.431z">
+                        </path>
+                    </svg>
+                </a>
+
+                &nbsp
+
+                <a href="https://www.linkedin.com/in/marina-pereira-oliveira/" target=”_blank”>
+                    <span class="icon icon--github">
+                        <svg width="24" height="24" viewBox="0 0 24 24">
+                            <path fill="#828282"
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z">
+                            </path>
+                        </svg>
+                    </span>
+                </a>
+
+            </div>
+        </div>
+    </header>
+
+    <div class="nav-scroller py-1 mb-2">
+        <nav class="nav d-flex justify-content-between">
+            <a class="p-2 text-muted" href="#">Knowledge-based RS</a>
+            <a class="p-2 text-muted" href="#">Collaborative filtering RS</a>
+            <a class="p-2 text-muted" href="#">Content-based RS</a>
+            <a class="p-2 text-muted" href="#">Data</a>
+        </nav>
+    </div>
+
+    <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
+        <div class="col-md-6 px-0">
+          <h1 class="display-4 font-italic">Recommendation Engine with IBM</h1>
+          <p class="lead my-3">
+            A dataset with ...
+          </p>
+        </div>
+    </div>
+
+    <div class="blog-post">
+        <h2 class="blog-post-title">Exploring and Cleaning the Data</h2>
+
+        <p>
+            In this first part, we will take a look at the data,
+            present the most relevant information,
+            along with the cleaning steps for further analysis.
+            The Jupyter notebook used to process this data can be found
+            <a href="https://github.com/oliveirampo/ibm_engine_recommendation/blob/main/scr/recommendations_with_IBM.ipynb" target="_blank">here</a>.
+        </p>
+
+        <hr>
+        <p>Two data sets were used in this study:</p>
+
+        
+        
+
+        <ul>
+          <li><strong>df</strong>: maps users to articles.</li>
+
+            <p>
+            <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe" id="mytable">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>article_id</th>
+      <th>title</th>
+      <th>user_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>1430.0</td>
+      <td>using pixiedust for fast, flexible, and easier...</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>1314.0</td>
+      <td>healthcare python streaming application demo</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>1429.0</td>
+      <td>use deep learning for image classification</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>1338.0</td>
+      <td>ml optimization using cognitive assistant</td>
+      <td>4</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>1276.0</td>
+      <td>deploy your python model as a restful api</td>
+      <td>5</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+            </p>
+
+          <li><strong>df_content</strong>: contains information about articles.</li>
+
+            <p>
+            <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe" id="mytable">
+  <thead>
+    <tr style="text-align: right;">
+      <th></th>
+      <th>doc_body</th>
+      <th>doc_description</th>
+      <th>doc_full_name</th>
+      <th>doc_status</th>
+      <th>article_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>0</th>
+      <td>Skip navigation Sign in SearchLoading...\r\n\r...</td>
+      <td>Detect bad readings in real time using Python ...</td>
+      <td>Detect Malfunctioning IoT Sensors with Streami...</td>
+      <td>Live</td>
+      <td>0</td>
+    </tr>
+    <tr>
+      <th>1</th>
+      <td>No Free Hunch Navigation * kaggle.com\r\n\r\n ...</td>
+      <td>See the forest, see the trees. Here lies the c...</td>
+      <td>Communicating data science: A guide to present...</td>
+      <td>Live</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>☰ * Login\r\n * Sign Up\r\n\r\n * Learning Pat...</td>
+      <td>Here’s this week’s news in Data Science and Bi...</td>
+      <td>This Week in Data Science (April 18, 2017)</td>
+      <td>Live</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>DATALAYER: HIGH THROUGHPUT, LOW LATENCY AT SCA...</td>
+      <td>Learn how distributed DBs solve the problem of...</td>
+      <td>DataLayer Conference: Boost the performance of...</td>
+      <td>Live</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>Skip navigation Sign in SearchLoading...\r\n\r...</td>
+      <td>This video demonstrates the power of IBM DataS...</td>
+      <td>Analyze NY Restaurant data using Spark in DSX</td>
+      <td>Live</td>
+      <td>4</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+            </p>
+        </ul>
+
+        <h4>General Information</h4>
+
+        <p>
+            There are
+            714 unique articles that have at least one interaction,
+            from a total of 1051 unique articles on the IBM platform,
+            5148 unique users,
+            and
+            45993 user-article interactions.
+        </p>
+
+        <div>
+            <img class="marginauto"
+                alt="number_of_users_and_articles"
+                height="auto"
+                src="static/images/numbers_user_articles.png">
+        </div>
+
+        <div class="parent center">
+            <div class="image1 col-md-12" id="histogram_articles_user"></div>
+            <img class="image2" src="static/images/infographic_interactions.png"
+                alt="number_of_users_and_articles"
+                width="400px"/>
+        </div>
+
+        &nbsp
+
+        <h4>Most Frequent Key-Words in the Articles</h4>
+
+        &nbsp
+
+        <div>
+            <img src="static/images/word_cloud_titles.png"
+                alt="word_cloud_titles"
+                class="marginauto"/>
+        </div>
+
+
+        <h4>Data Cleaning</h4>
+
+        <p>
+            As you noticed, the e-mails in the <strong>df</strong> dataframe
+            are encrypted in order to preserve anonymity.
+            The content of the strings is irrelevant, and for practical reasons,
+            they were mapped to unique identifiers with integer format.
+            In addition to that, duplicate rows were eliminated.
+        </p>
+
+        <p>Thus, the following steps were taken for cleaning the data:</p>
+
+        <ol>
+            <li>Replace e-mails by indexes.</li>
+            <li>Remove any rows that have the same article id, and only keep the first entry.</li>
+        </ol>
+
+        <h2>Rank-Based Recommendations</h2>
+
+        <p>
+            When building a recommendation system, the most straightforward step
+            is to build a non-personalized recommendation.
+            It is easy, does not require specific knowledge about the users.
+            This is useful not only to provide a general picture of the data,
+            but also to provide initial recommendations to new users.
+        </p>
+
+        <hr>
+
+        <h4>Top 10 Articles</h4>
+
+        <p>
+            In our case, we ranked the articles based on their popularity.
+            But note that we don't actually have ratings for whether a user liked an article or not.
+            We only know that a user has interacted with an article.
+            Thus, the popularity of an article was based on how often an article was interacted with.
+            The table below show the 10 most interacted with articles.
+        </p>
+
+
+        <table id="mytable">
+            <tr>
+                <th>Top 10 Articles</th>
+            </tr>
+            
+            <tr>
+            <!--<TD class="c1"><IMG src="favicon.ico"></TD>-->
+               <td>Healthcare python streaming application demo</td>
+            </tr>
+            
+            <tr>
+            <!--<TD class="c1"><IMG src="favicon.ico"></TD>-->
+               <td>Use deep learning for image classification</td>
+            </tr>
+            
+            <tr>
+            <!--<TD class="c1"><IMG src="favicon.ico"></TD>-->
+               <td>Apache spark lab, part 1: basic concepts</td>
+            </tr>
+            
+            <tr>
+            <!--<TD class="c1"><IMG src="favicon.ico"></TD>-->
+               <td>Predicting churn with the spss random tree algorithm</td>
+            </tr>
+            
+            <tr>
+            <!--<TD class="c1"><IMG src="favicon.ico"></TD>-->
+               <td>Analyze energy consumption in buildings</td>
+            </tr>
+            
+            <tr>
+            <!--<TD class="c1"><IMG src="favicon.ico"></TD>-->
+               <td>Visualize car data with brunel</td>
+            </tr>
+            
+            <tr>
+            <!--<TD class="c1"><IMG src="favicon.ico"></TD>-->
+               <td>Use xgboost, scikit-learn &amp; ibm watson machine learning apis</td>
+            </tr>
+            
+            <tr>
+            <!--<TD class="c1"><IMG src="favicon.ico"></TD>-->
+               <td>Gosales transactions for logistic regression model</td>
+            </tr>
+            
+            <tr>
+            <!--<TD class="c1"><IMG src="favicon.ico"></TD>-->
+               <td>Insights from new york car accident reports</td>
+            </tr>
+            
+            <tr>
+            <!--<TD class="c1"><IMG src="favicon.ico"></TD>-->
+               <td>Finding optimal locations of new store using decision optimization</td>
+            </tr>
+            
+        </table>
+
+        &nbsp
+
+        <h4>Top 10 Articles by Topic</h4>
+
+        <div id="collapsibleTree">
+          <div class="observablehq-chart" ></div>
+        </div>
+        <div>
+            <a style="font: 0.8em sans-serif;border: 1px solid #efefef;padding: 0.4em;border-radius: 1em;display: inline-flex;align-items: center;color: inherit;text-decoration: none;"
+           href="https://observablehq.com/@d3/collapsible-tree" target="_blank" rel="noopener noreferrer"><svg role="img" viewBox="0 0 25 28" width="16" height="16" aria-label="Observable" fill="currentColor"><path d="M12.5 22.6667C11.3458 22.6667 10.3458 22.4153 9.5 21.9127C8.65721 21.412 7.98339 20.7027 7.55521 19.8654C7.09997 18.9942 6.76672 18.0729 6.56354 17.1239C6.34796 16.0947 6.24294 15.0483 6.25 14C6.25 13.1699 6.30417 12.3764 6.41354 11.6176C6.52188 10.8598 6.72292 10.0894 7.01563 9.30748C7.30833 8.52555 7.68542 7.84763 8.14479 7.27274C8.62304 6.68378 9.24141 6.20438 9.95208 5.87163C10.6979 5.51244 11.5458 5.33333 12.5 5.33333C13.6542 5.33333 14.6542 5.58467 15.5 6.08733C16.3428 6.588 17.0166 7.29733 17.4448 8.13459C17.8969 8.99644 18.2271 9.9103 18.4365 10.8761C18.6448 11.841 18.75 12.883 18.75 14C18.75 14.8301 18.6958 15.6236 18.5865 16.3824C18.4699 17.1702 18.2639 17.9446 17.9719 18.6925C17.6698 19.4744 17.2948 20.1524 16.8427 20.7273C16.3906 21.3021 15.7927 21.7692 15.0479 22.1284C14.3031 22.4876 13.4542 22.6667 12.5 22.6667ZM14.7063 16.2945C15.304 15.6944 15.6365 14.864 15.625 14C15.625 13.1073 15.326 12.3425 14.7292 11.7055C14.1313 11.0685 13.3885 10.75 12.5 10.75C11.6115 10.75 10.8688 11.0685 10.2708 11.7055C9.68532 12.3123 9.36198 13.1405 9.375 14C9.375 14.8927 9.67396 15.6575 10.2708 16.2945C10.8688 16.9315 11.6115 17.25 12.5 17.25C13.3885 17.25 14.124 16.9315 14.7063 16.2945ZM12.5 27C19.4031 27 25 21.1792 25 14C25 6.82075 19.4031 1 12.5 1C5.59687 1 0 6.82075 0 14C0 21.1792 5.59687 27 12.5 27Z" fill="currentColor"></path></svg><strong style="margin: 0 4px;">D3</strong> Collapsible Tree</a>
+        </div>
+
+        &nbsp
+
+        <h2>User-User Based Collaborative Filtering</h2>
+
+        <p>
+            Another way to recommend articles to a user is by
+            making use of the similarity between users.
+            We only have to obtain the most similar users to a given user,
+            and recommend the new articles from the formers to the later.
+        </p>
+
+        <hr>
+
+        <p>
+            The following steps were taken:
+        </p>
+
+        <ol>
+            <li>Reformat <strong>df</strong> dataframe to more easily compute similarity.</li>
+            <li>Obtain an ordered list of the most similar user to a given user.</li>
+            <li> Use this list o similar users to find articles to be recommended.</li>
+        </ol>
+
+        <h4>Reformatting the Data</h4>
+
+        <p>
+            We did that by reformatting the <strong>df</strong> dataframe
+            such that the rows refer to users and the columns to article ids.
+            It is important to mention that
+            we neglected how many time a user interacted with the article,
+            thus, all entries where a user interacted with an article was a 1,
+            and in the opposite case a 0.
+        </p>
+
+        <p>
+            <div>
+<style scoped>
+    .dataframe tbody tr th:only-of-type {
+        vertical-align: middle;
+    }
+
+    .dataframe tbody tr th {
+        vertical-align: top;
+    }
+
+    .dataframe thead tr th {
+        text-align: left;
+    }
+
+    .dataframe thead tr:last-of-type th {
+        text-align: right;
+    }
+</style>
+<table border="1" class="dataframe" id="mytable">
+  <thead>
+    <tr>
+      <th></th>
+      <th colspan="15" halign="left">value</th>
+    </tr>
+    <tr>
+      <th>article_id</th>
+      <th>0.0</th>
+      <th>2.0</th>
+      <th>4.0</th>
+      <th>8.0</th>
+      <th>9.0</th>
+      <th>12.0</th>
+      <th>14.0</th>
+      <th>15.0</th>
+      <th>16.0</th>
+      <th>18.0</th>
+      <th>20.0</th>
+      <th>25.0</th>
+      <th>26.0</th>
+      <th>28.0</th>
+      <th>29.0</th>
+    </tr>
+    <tr>
+      <th>user_id</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th>1</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>2</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>3</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+    </tr>
+    <tr>
+      <th>4</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>1.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+    <tr>
+      <th>5</th>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+      <td>0.0</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+        </p>
+
+
+        <h4>List of Similar Users</h4>
+
+        <p>
+            The results for each user in the above table are binary, that is why
+            it makes sense to compute similarity as the dot product of two users.
+            The figure below shows the most similar users for the 100 users.
+        </p>
+
+        <p>
+            When you hover over the user id,
+            the <span style="color:red;">red lines</span> show the closest neighbor to the given user,
+            and the  <span style="color:#2f4f4f;">green lines</span> show that the given user is one of the most similar users
+            of the connected users.
+        </p>
+
+        <div id="edgeBundling">
+          <div class="observablehq-chart" ></div>
+        </div>
+        <div>
+            <a style="font: 0.8em sans-serif;border: 1px solid #efefef;padding: 0.4em;border-radius: 1em;display: inline-flex;align-items: center;color: inherit;text-decoration: none;"
+           href="https://observablehq.com/@d3/hierarchical-edge-bundling" target="_blank" rel="noopener noreferrer">
+                <svg role="img" viewBox="0 0 25 28" width="16" height="16" aria-label="Observable" fill="currentColor">
+                    <path d="M12.5 22.6667C11.3458 22.6667 10.3458 22.4153 9.5 21.9127C8.65721 21.412 7.98339 20.7027 7.55521 19.8654C7.09997 18.9942 6.76672 18.0729 6.56354 17.1239C6.34796 16.0947 6.24294 15.0483 6.25 14C6.25 13.1699 6.30417 12.3764 6.41354 11.6176C6.52188 10.8598 6.72292 10.0894 7.01563 9.30748C7.30833 8.52555 7.68542 7.84763 8.14479 7.27274C8.62304 6.68378 9.24141 6.20438 9.95208 5.87163C10.6979 5.51244 11.5458 5.33333 12.5 5.33333C13.6542 5.33333 14.6542 5.58467 15.5 6.08733C16.3428 6.588 17.0166 7.29733 17.4448 8.13459C17.8969 8.99644 18.2271 9.9103 18.4365 10.8761C18.6448 11.841 18.75 12.883 18.75 14C18.75 14.8301 18.6958 15.6236 18.5865 16.3824C18.4699 17.1702 18.2639 17.9446 17.9719 18.6925C17.6698 19.4744 17.2948 20.1524 16.8427 20.7273C16.3906 21.3021 15.7927 21.7692 15.0479 22.1284C14.3031 22.4876 13.4542 22.6667 12.5 22.6667ZM14.7063 16.2945C15.304 15.6944 15.6365 14.864 15.625 14C15.625 13.1073 15.326 12.3425 14.7292 11.7055C14.1313 11.0685 13.3885 10.75 12.5 10.75C11.6115 10.75 10.8688 11.0685 10.2708 11.7055C9.68532 12.3123 9.36198 13.1405 9.375 14C9.375 14.8927 9.67396 15.6575 10.2708 16.2945C10.8688 16.9315 11.6115 17.25 12.5 17.25C13.3885 17.25 14.124 16.9315 14.7063 16.2945ZM12.5 27C19.4031 27 25 21.1792 25 14C25 6.82075 19.4031 1 12.5 1C5.59687 1 0 6.82075 0 14C0 21.1792 5.59687 27 12.5 27Z" fill="currentColor"></path>
+                </svg><strong style="margin: 0 4px;">D3</strong> Hierarchical Edge Bundling</a>
+        </div>
+
+        &nbsp
+
+        <h4>Recommend Articles</h4>
+
+        <p>
+            One we know the most similar users to a given user,
+            we can recommend their new articles to this user.
+            For users with same similarity we chose first:
+        </p>
+
+        <ul>
+            <li>users that have the most total article interactions,</li>
+            <li>and articles with most interactions.</li>
+        </ul>
+
+
+        <h2>Matrix Factorization</h2>
+
+
+    </div>
+
+</div>
+
+</body>
+
+<script>
+    const histogram_figure = {"data": [{"marker": {"color": "#2f4f4f"}, "x": [13, 4, 3, 6, 2, 2, 3, 10, 1, 13, 1, 4, 3, 4, 3, 11, 3, 1, 2, 4, 9, 1, 35, 11, 15, 3, 7, 2, 1, 11, 101, 20, 2, 2, 10, 4, 3, 1, 1, 14, 40, 3, 13, 7, 4, 11, 1, 9, 3, 5, 1, 10, 2, 3, 8, 83, 18, 6, 3, 5, 2, 1, 6, 1, 1, 1, 3, 1, 1, 5, 11, 3, 8, 3, 6, 2, 5, 3, 9, 1, 6, 40, 26, 2, 1, 1, 2, 24, 3, 8, 2, 1, 2, 25, 1, 3, 12, 1, 3, 6, 1, 6, 4, 1, 4, 3, 9, 35, 7, 6, 4, 1, 2, 33, 3, 29, 4, 7, 1, 9, 4, 1, 9, 12, 5, 4, 1, 1, 19, 5, 2, 3, 3, 45, 2, 2, 12, 1, 16, 1, 5, 1, 2, 1, 2, 8, 5, 4, 26, 26, 2, 1, 2, 1, 15, 3, 14, 3, 4, 49, 4, 3, 13, 3, 1, 1, 3, 24, 1, 4, 1, 5, 5, 1, 14, 11, 3, 2, 26, 7, 18, 2, 3, 3, 1, 1, 41, 1, 2, 6, 1, 9, 29, 11, 1, 17, 10, 12, 12, 1, 1, 2, 3, 6, 1, 1, 1, 1, 12, 7, 1, 10, 48, 9, 1, 2, 3, 1, 4, 1, 1, 5, 1, 3, 1, 1, 1, 1, 5, 1, 5, 1, 1, 17, 3, 1, 1, 12, 4, 2, 1, 20, 11, 2, 4, 3, 13, 5, 20, 9, 14, 29, 3, 6, 39, 2, 3, 1, 8, 8, 5, 4, 6, 13, 3, 6, 7, 1, 2, 6, 1, 66, 1, 1, 16, 1, 1, 6, 2, 2, 1, 3, 2, 102, 4, 8, 6, 6, 41, 23, 7, 2, 4, 17, 2, 8, 4, 5, 1, 3, 1, 9, 1, 79, 33, 1, 1, 1, 2, 72, 2, 5, 1, 14, 2, 3, 6, 5, 2, 1, 1, 1, 1, 15, 1, 5, 1, 25, 1, 5, 24, 2, 31, 1, 1, 16, 4, 8, 1, 1, 15, 17, 3, 1, 2, 1, 10, 1, 1, 1, 5, 8, 1, 4, 64, 3, 1, 4, 2, 7, 10, 4, 4, 4, 48, 41, 14, 4, 2, 91, 17, 19, 4, 1, 1, 4, 1, 6, 1, 2, 62, 1, 4, 3, 1, 4, 1, 24, 2, 2, 14, 1, 2, 6, 32, 1, 5, 9, 75, 4, 7, 104, 6, 14, 15, 3, 2, 5, 1, 25, 6, 1, 1, 3, 2, 2, 1, 30, 2, 2, 7, 2, 2, 6, 2, 3, 3, 36, 1, 1, 31, 66, 3, 32, 1, 1, 1, 3, 18, 14, 1, 11, 4, 1, 3, 12, 4, 2, 1, 8, 1, 1, 1, 84, 1, 79, 11, 1, 22, 19, 20, 1, 2, 2, 3, 1, 1, 1, 1, 4, 3, 10, 1, 11, 2, 2, 9, 2, 18, 1, 1, 2, 11, 1, 3, 9, 1, 10, 2, 1, 7, 18, 46, 1, 1, 6, 37, 1, 2, 1, 2, 17, 5, 1, 4, 3, 11, 28, 11, 11, 11, 6, 1, 2, 1, 1, 8, 1, 2, 11, 2, 2, 1, 1, 4, 147, 1, 1, 1, 6, 24, 1, 8, 23, 38, 1, 5, 1, 14, 1, 1, 1, 89, 1, 53, 1, 1, 1, 7, 1, 1, 1, 2, 6, 1, 5, 1, 1, 1, 3, 1, 2, 1, 38, 4, 1, 5, 1, 2, 1, 2, 5, 6, 23, 13, 5, 2, 6, 10, 10, 1, 1, 4, 2, 1, 7, 4, 2, 5, 2, 2, 1, 8, 1, 4, 1, 2, 5, 1, 1, 2, 1, 2, 13, 1, 2, 11, 1, 33, 10, 21, 1, 58, 4, 11, 1, 1, 22, 3, 14, 3, 22, 1, 1, 1, 2, 7, 2, 30, 21, 1, 4, 4, 1, 7, 3, 4, 12, 3, 4, 2, 2, 17, 8, 1, 1, 18, 7, 2, 48, 5, 1, 5, 2, 3, 1, 2, 32, 3, 23, 1, 1, 16, 1, 13, 1, 26, 1, 1, 1, 7, 2, 3, 4, 3, 9, 6, 17, 1, 25, 4, 19, 9, 3, 5, 1, 2, 13, 67, 1, 8, 1, 1, 10, 47, 1, 5, 2, 1, 4, 2, 2, 2, 4, 1, 4, 1, 19, 5, 1, 5, 15, 17, 4, 43, 6, 14, 1, 59, 2, 1, 3, 1, 1, 1, 18, 7, 26, 8, 5, 1, 7, 17, 1, 3, 3, 1, 11, 4, 1, 1, 5, 1, 20, 13, 10, 34, 1, 1, 6, 21, 45, 3, 2, 8, 1, 3, 1, 9, 38, 19, 1, 4, 12, 16, 2, 1, 1, 9, 1, 4, 2, 1, 1, 5, 24, 2, 1, 1, 1, 2, 1, 2, 7, 13, 8, 3, 12, 19, 2, 2, 4, 38, 1, 3, 1, 27, 1, 2, 1, 1, 31, 3, 5, 1, 3, 1, 6, 1, 8, 29, 34, 1, 11, 22, 1, 1, 7, 12, 1, 1, 1, 76, 10, 1, 4, 8, 1, 1, 16, 54, 10, 145, 11, 6, 3, 3, 4, 15, 3, 2, 35, 3, 5, 11, 2, 1, 1, 2, 1, 7, 148, 40, 7, 1, 8, 3, 3, 6, 1, 1, 1, 1, 1, 4, 1, 2, 7, 1, 7, 8, 2, 7, 1, 8, 7, 2, 1, 8, 1, 2, 5, 1, 3, 2, 4, 1, 1, 10, 1, 2, 3, 10, 1, 50, 1, 2, 10, 4, 3, 14, 4, 7, 1, 6, 3, 25, 1, 21, 1, 364, 5, 3, 1, 51, 1, 2, 1, 2, 2, 4, 3, 21, 11, 8, 1, 15, 11, 33, 1, 2, 1, 1, 10, 8, 1, 1, 6, 14, 2, 5, 1, 2, 2, 34, 1, 82, 5, 29, 4, 5, 1, 2, 1, 3, 1, 9, 15, 26, 96, 1, 5, 6, 6, 15, 27, 7, 2, 1, 3, 4, 4, 22, 7, 2, 1, 4, 27, 1, 3, 1, 2, 6, 10, 2, 170, 2, 1, 64, 15, 5, 8, 2, 4, 10, 1, 1, 10, 60, 6, 11, 1, 5, 2, 7, 17, 2, 1, 4, 2, 42, 12, 4, 2, 1, 1, 11, 1, 3, 1, 2, 2, 1, 12, 7, 1, 5, 1, 1, 3, 1, 11, 2, 1, 1, 25, 12, 1, 6, 3, 19, 6, 2, 1, 8, 5, 1, 11, 1, 8, 6, 14, 1, 7, 1, 1, 5, 50, 4, 1, 6, 7, 3, 2, 4, 9, 1, 7, 2, 16, 5, 2, 1, 3, 1, 1, 1, 2, 13, 1, 103, 1, 6, 1, 5, 4, 6, 1, 2, 4, 2, 31, 3, 50, 28, 2, 5, 3, 2, 4, 27, 1, 2, 4, 3, 4, 4, 2, 3, 2, 3, 2, 22, 30, 2, 5, 5, 18, 2, 2, 9, 78, 13, 9, 5, 5, 4, 1, 3, 1, 4, 3, 1, 3, 6, 34, 5, 3, 25, 3, 1, 1, 16, 1, 1, 3, 2, 11, 6, 3, 3, 32, 5, 1, 1, 4, 2, 1, 6, 2, 1, 1, 5, 3, 4, 24, 1, 5, 37, 1, 31, 4, 1, 10, 3, 33, 63, 1, 3, 1, 1, 1, 1, 3, 2, 5, 6, 1, 1, 1, 13, 8, 12, 3, 5, 45, 1, 41, 21, 16, 3, 6, 2, 1, 7, 7, 41, 1, 5, 5, 18, 1, 1, 4, 8, 1, 30, 1, 1, 76, 1, 42, 3, 21, 2, 1, 11, 4, 7, 1, 82, 1, 6, 2, 3, 2, 9, 9, 32, 5, 16, 8, 1, 4, 13, 22, 4, 7, 18, 1, 19, 1, 4, 4, 1, 1, 6, 1, 1, 2, 1, 1, 21, 19, 6, 1, 7, 4, 28, 1, 18, 12, 2, 10, 39, 40, 7, 4, 18, 8, 6, 1, 1, 1, 1, 7, 1, 32, 1, 4, 2, 10, 1, 18, 1, 39, 5, 2, 4, 4, 5, 2, 18, 5, 5, 8, 3, 5, 3, 8, 3, 26, 8, 2, 10, 7, 19, 19, 3, 5, 4, 1, 5, 69, 7, 1, 42, 1, 13, 1, 5, 10, 10, 3, 5, 7, 2, 1, 44, 6, 1, 19, 4, 2, 4, 2, 6, 39, 2, 20, 5, 1, 1, 4, 95, 2, 20, 82, 11, 3, 60, 13, 4, 21, 12, 24, 1, 3, 3, 12, 4, 7, 25, 1, 1, 21, 2, 3, 5, 2, 58, 3, 1, 2, 3, 3, 37, 4, 2, 2, 1, 1, 11, 2, 7, 3, 5, 2, 12, 4, 1, 6, 2, 5, 1, 5, 3, 1, 24, 27, 1, 1, 25, 4, 1, 8, 16, 1, 1, 1, 17, 2, 7, 3, 2, 5, 3, 32, 19, 3, 4, 14, 5, 2, 4, 1, 1, 8, 5, 15, 1, 1, 4, 2, 1, 24, 6, 2, 37, 5, 7, 1, 3, 7, 1, 3, 3, 94, 15, 5, 2, 2, 1, 10, 1, 12, 1, 1, 2, 1, 2, 2, 26, 16, 1, 14, 2, 25, 10, 33, 3, 16, 3, 4, 3, 8, 1, 13, 3, 1, 3, 1, 2, 7, 1, 5, 1, 20, 30, 20, 16, 8, 1, 10, 2, 25, 58, 3, 13, 1, 2, 18, 1, 35, 1, 1, 4, 13, 1, 1, 2, 2, 1, 4, 3, 4, 3, 23, 3, 2, 7, 102, 2, 2, 8, 8, 1, 1, 3, 1, 2, 1, 1, 2, 10, 14, 6, 1, 19, 1, 3, 1, 1, 1, 1, 8, 1, 2, 4, 5, 1, 7, 38, 40, 1, 11, 1, 1, 1, 14, 1, 1, 40, 2, 4, 1, 1, 7, 1, 6, 1, 4, 9, 8, 1, 4, 1, 1, 38, 1, 2, 6, 5, 4, 1, 2, 10, 1, 9, 16, 24, 3, 21, 3, 9, 1, 7, 11, 5, 10, 28, 6, 1, 1, 1, 1, 2, 2, 1, 8, 1, 75, 4, 28, 1, 32, 1, 9, 7, 3, 11, 10, 7, 7, 3, 1, 1, 2, 1, 1, 1, 12, 4, 16, 5, 6, 1, 18, 2, 5, 2, 1, 13, 11, 2, 4, 29, 5, 6, 11, 1, 1, 2, 29, 3, 1, 9, 4, 20, 2, 1, 1, 1, 59, 8, 3, 1, 2, 4, 2, 1, 3, 11, 10, 5, 30, 1, 13, 6, 15, 5, 53, 1, 2, 9, 9, 9, 3, 50, 3, 1, 5, 2, 1, 2, 46, 10, 3, 1, 1, 3, 3, 38, 1, 4, 3, 13, 1, 20, 2, 1, 7, 3, 14, 2, 19, 14, 4, 14, 2, 3, 1, 1, 132, 34, 1, 15, 2, 4, 3, 9, 3, 5, 1, 11, 23, 4, 2, 28, 5, 3, 11, 6, 27, 11, 1, 30, 33, 3, 7, 25, 2, 5, 32, 6, 4, 18, 2, 3, 2, 4, 2, 3, 26, 2, 2, 2, 6, 62, 1, 1, 57, 2, 14, 2, 1, 4, 1, 65, 2, 1, 1, 144, 4, 1, 3, 8, 3, 6, 6, 1, 6, 8, 8, 1, 35, 1, 1, 2, 1, 33, 5, 2, 76, 12, 1, 4, 1, 18, 14, 3, 5, 1, 1, 3, 2, 11, 3, 4, 10, 6, 1, 5, 14, 10, 1, 3, 3, 2, 10, 3, 1, 5, 3, 1, 1, 3, 10, 2, 3, 5, 23, 2, 52, 1, 2, 2, 6, 1, 9, 2, 3, 28, 2, 2, 2, 1, 8, 4, 1, 1, 22, 7, 16, 1, 36, 4, 8, 52, 1, 1, 12, 1, 3, 10, 1, 6, 2, 2, 6, 2, 11, 2, 6, 17, 2, 2, 6, 3, 1, 13, 8, 3, 1, 3, 16, 2, 4, 32, 2, 1, 17, 4, 2, 5, 2, 2, 1, 5, 4, 13, 1, 17, 7, 3, 1, 1, 2, 10, 4, 29, 1, 36, 4, 16, 4, 23, 1, 21, 16, 1, 4, 2, 14, 13, 15, 3, 7, 4, 21, 7, 1, 8, 3, 3, 2, 2, 15, 10, 1, 1, 1, 6, 59, 37, 1, 3, 1, 3, 1, 4, 1, 2, 6, 7, 2, 2, 5, 1, 1, 1, 5, 1, 7, 1, 7, 2, 1, 13, 2, 2, 4, 3, 11, 3, 9, 16, 27, 2, 9, 20, 11, 3, 28, 4, 11, 1, 1, 3, 7, 1, 14, 4, 7, 2, 5, 5, 14, 9, 1, 11, 4, 9, 14, 11, 9, 6, 1, 41, 2, 3, 13, 9, 2, 5, 12, 3, 2, 39, 1, 52, 12, 2, 1, 24, 1, 20, 3, 5, 3, 2, 2, 7, 2, 4, 1, 10, 3, 7, 15, 2, 4, 3, 14, 11, 1, 5, 24, 7, 1, 20, 8, 2, 11, 5, 6, 26, 4, 58, 1, 1, 1, 2, 1, 1, 16, 6, 1, 1, 20, 2, 2, 1, 1, 9, 5, 5, 1, 4, 89, 8, 2, 2, 4, 15, 84, 2, 4, 45, 13, 69, 1, 4, 9, 10, 1, 1, 2, 10, 2, 3, 30, 1, 10, 1, 6, 1, 4, 15, 8, 35, 67, 1, 1, 5, 4, 13, 53, 1, 24, 5, 4, 1, 7, 1, 3, 1, 11, 8, 1, 50, 48, 1, 1, 4, 4, 7, 5, 16, 3, 1, 43, 40, 1, 1, 5, 2, 2, 15, 1, 1, 4, 4, 3, 6, 1, 2, 12, 3, 2, 8, 5, 3, 9, 1, 8, 3, 131, 3, 2, 7, 1, 1, 20, 9, 5, 4, 8, 1, 13, 1, 3, 17, 3, 72, 2, 1, 11, 28, 26, 1, 3, 2, 83, 23, 4, 4, 22, 1, 1, 1, 4, 2, 1, 2, 1, 2, 2, 1, 3, 11, 2, 19, 34, 1, 2, 42, 3, 32, 2, 1, 2, 92, 1, 1, 11, 20, 5, 10, 2, 1, 4, 9, 3, 3, 4, 8, 10, 3, 60, 1, 1, 6, 2, 3, 1, 5, 1, 24, 1, 2, 1, 4, 1, 1, 7, 2, 3, 28, 2, 1, 1, 2, 2, 1, 1, 6, 1, 1, 3, 1, 2, 10, 10, 1, 1, 3, 1, 1, 13, 6, 4, 12, 1, 1, 2, 3, 11, 1, 10, 3, 1, 21, 6, 14, 6, 1, 8, 1, 1, 4, 6, 3, 16, 1, 1, 2, 1, 1, 4, 1, 10, 20, 4, 3, 8, 2, 11, 1, 4, 6, 1, 1, 3, 1, 1, 1, 3, 6, 2, 8, 2, 1, 2, 10, 33, 9, 2, 5, 9, 2, 16, 4, 1, 7, 2, 1, 1, 4, 1, 2, 5, 3, 10, 1, 3, 2, 34, 17, 9, 2, 16, 15, 58, 1, 1, 1, 5, 4, 5, 26, 3, 5, 9, 16, 7, 3, 10, 3, 25, 2, 3, 3, 25, 4, 1, 8, 27, 8, 5, 1, 6, 1, 3, 7, 1, 1, 8, 8, 1, 3, 4, 1, 1, 3, 4, 363, 2, 4, 4, 5, 4, 19, 23, 21, 1, 1, 10, 3, 6, 1, 1, 18, 7, 8, 2, 2, 4, 9, 5, 2, 3, 35, 15, 1, 18, 2, 3, 13, 2, 11, 1, 4, 7, 5, 25, 5, 3, 10, 51, 5, 3, 3, 50, 8, 7, 8, 2, 3, 4, 6, 1, 8, 1, 5, 13, 2, 11, 4, 7, 25, 12, 23, 3, 91, 7, 7, 2, 5, 1, 4, 3, 35, 2, 1, 1, 9, 1, 2, 2, 32, 2, 10, 1, 16, 10, 7, 4, 13, 6, 1, 9, 26, 11, 2, 22, 1, 1, 28, 5, 13, 3, 1, 1, 1, 2, 5, 1, 1, 18, 6, 97, 24, 6, 3, 1, 2, 1, 20, 1, 1, 4, 1, 6, 1, 9, 2, 3, 3, 1, 10, 5, 33, 18, 1, 1, 5, 2, 1, 1, 1, 81, 1, 3, 2, 3, 1, 9, 7, 7, 3, 25, 1, 7, 1, 1, 8, 36, 40, 1, 4, 1, 1, 3, 6, 3, 3, 50, 4, 6, 12, 60, 2, 5, 35, 1, 4, 1, 4, 1, 1, 1, 2, 1, 14, 1, 5, 10, 2, 6, 9, 4, 2, 1, 17, 1, 4, 5, 8, 2, 5, 2, 1, 1, 6, 1, 8, 6, 51, 10, 2, 2, 7, 1, 1, 1, 1, 8, 1, 13, 3, 1, 1, 7, 1, 2, 84, 22, 4, 11, 2, 1, 1, 1, 9, 1, 10, 3, 1, 3, 10, 3, 1, 21, 22, 1, 1, 2, 18, 10, 160, 5, 52, 3, 2, 12, 1, 3, 55, 7, 7, 4, 80, 4, 6, 2, 11, 1, 4, 6, 4, 2, 1, 4, 3, 3, 7, 1, 1, 2, 2, 4, 5, 2, 3, 1, 11, 8, 5, 2, 3, 1, 19, 13, 1, 4, 3, 79, 2, 1, 1, 3, 1, 2, 23, 9, 3, 3, 1, 2, 22, 3, 9, 3, 2, 8, 7, 6, 3, 3, 18, 3, 2, 3, 1, 1, 1, 6, 2, 18, 3, 1, 5, 4, 1, 8, 1, 4, 29, 5, 1, 29, 1, 9, 1, 4, 9, 15, 1, 80, 1, 11, 5, 15, 1, 7, 12, 29, 2, 1, 4, 1, 51, 55, 7, 8, 2, 6, 1, 18, 1, 4, 5, 2, 9, 3, 3, 1, 2, 2, 33, 7, 4, 9, 12, 6, 1, 16, 3, 5, 1, 32, 8, 3, 3, 19, 1, 1, 3, 20, 12, 1, 1, 8, 1, 6, 1, 1, 3, 1, 9, 7, 2, 7, 7, 1, 12, 1, 1, 3, 2, 1, 3, 1, 2, 18, 2, 7, 1, 2, 2, 2, 10, 1, 1, 3, 39, 137, 14, 2, 6, 2, 1, 9, 14, 1, 20, 2, 4, 5, 1, 3, 6, 3, 5, 2, 7, 2, 1, 2, 6, 1, 11, 3, 34, 1, 1, 1, 17, 20, 4, 6, 1, 10, 1, 8, 29, 31, 5, 1, 13, 2, 4, 3, 1, 2, 1, 2, 1, 1, 5, 4, 1, 1, 1, 3, 1, 9, 20, 1, 18, 9, 1, 8, 2, 1, 4, 3, 10, 4, 2, 1, 3, 1, 2, 5, 2, 9, 4, 4, 4, 4, 2, 2, 4, 4, 2, 1, 4, 12, 4, 2, 6, 1, 2, 7, 1, 1, 44, 7, 1, 1, 2, 1, 2, 3, 8, 15, 5, 4, 1, 8, 8, 12, 3, 2, 4, 1, 1, 4, 3, 7, 30, 6, 2, 1, 4, 3, 6, 1, 1, 19, 10, 4, 2, 7, 7, 6, 1, 1, 1, 21, 3, 5, 5, 2, 2, 3, 3, 10, 49, 6, 2, 2, 5, 15, 1, 2, 9, 3, 15, 16, 49, 51, 4, 1, 1, 1, 1, 8, 5, 1, 2, 4, 6, 9, 2, 2, 4, 2, 2, 3, 3, 2, 12, 26, 3, 45, 6, 10, 4, 5, 19, 3, 3, 19, 32, 12, 1, 10, 3, 6, 1, 4, 4, 1, 3, 16, 8, 1, 2, 19, 38, 3, 1, 1, 1, 2, 5, 2, 7, 2, 3, 6, 2, 2, 5, 14, 1, 2, 57, 7, 1, 2, 1, 2, 2, 30, 1, 14, 2, 39, 1, 2, 2, 2, 1, 1, 3, 2, 8, 1, 4, 5, 3, 3, 5, 9, 3, 3, 3, 8, 1, 2, 1, 10, 6, 9, 2, 1, 3, 38, 2, 9, 3, 3, 9, 13, 3, 1, 9, 2, 6, 1, 2, 1, 3, 4, 8, 14, 1, 3, 27, 5, 7, 1, 1, 11, 28, 1, 1, 1, 3, 1, 8, 1, 1, 1, 18, 6, 4, 2, 6, 1, 3, 20, 5, 16, 7, 2, 4, 2, 2, 1, 3, 12, 8, 6, 6, 19, 11, 34, 8, 16, 1, 12, 46, 1, 2, 2, 16, 33, 1, 10, 11, 11, 6, 6, 6, 1, 5, 35, 21, 2, 11, 1, 42, 1, 10, 1, 1, 1, 1, 10, 17, 2, 16, 10, 1, 3, 4, 1, 6, 24, 1, 1, 3, 24, 6, 18, 2, 2, 30, 1, 16, 61, 10, 3, 1, 1, 3, 3, 2, 7, 5, 1, 2, 2, 5, 25, 4, 1, 6, 1, 3, 7, 2, 6, 13, 1, 5, 49, 1, 9, 1, 1, 3, 1, 2, 4, 8, 6, 1, 16, 3, 14, 33, 2, 1, 9, 55, 6, 6, 2, 5, 4, 1, 6, 4, 1, 20, 7, 169, 4, 8, 3, 12, 15, 1, 45, 4, 34, 26, 2, 3, 1, 2, 23, 4, 4, 1, 22, 23, 13, 28, 9, 5, 2, 9, 1, 25, 2, 8, 8, 1, 5, 3, 7, 1, 1, 3, 13, 6, 5, 2, 36, 1, 12, 5, 12, 56, 1, 3, 22, 63, 1, 22, 38, 3, 14, 1, 2, 1, 1, 12, 5, 4, 4, 1, 2, 1, 3, 3, 1, 1, 1, 3, 16, 10, 1, 4, 5, 1, 4, 8, 1, 2, 4, 49, 79, 6, 1, 3, 2, 7, 26, 2, 35, 1, 10, 3, 2, 4, 1, 16, 1, 1, 2, 12, 1, 1, 2, 8, 5, 1, 2, 1, 1, 1, 3, 3, 1, 4, 1, 1, 1, 7, 3, 6, 8, 2, 1, 6, 7, 5, 4, 1, 1, 5, 13, 2, 2, 35, 11, 7, 1, 10, 19, 29, 1, 1, 1, 6, 2, 3, 1, 4, 20, 1, 1, 7, 2, 56, 1, 2, 16, 10, 32, 34, 1, 25, 2, 1, 1, 1, 1, 1, 4, 10, 2, 5, 1, 12, 3, 1, 46, 1, 1, 1, 7, 3, 3, 2, 1, 2, 30, 4, 6, 1, 10, 2, 2, 1, 3, 1, 3, 2, 1, 9, 13, 2, 2, 6, 5, 2, 1, 3, 4, 23, 14, 1, 6, 35, 3, 20, 1, 1, 11, 59, 1, 8, 10, 28, 7, 2, 7, 1, 48, 9, 15, 2, 5, 2, 8, 5, 3, 2, 5, 31, 1, 61, 3, 5, 2, 59, 7, 4, 1, 1, 9, 11, 1, 7, 17, 25, 3, 1, 1, 1, 22, 3, 10, 21, 1, 1, 11, 2, 1, 20, 1, 12, 1, 2, 1, 2, 1, 7, 3, 1, 3, 29, 5, 1, 4, 6, 1, 1, 95, 4, 1, 2, 29, 67, 20, 1, 5, 2, 2, 142, 2, 1, 2, 2, 3, 2, 4, 2, 19, 20, 3, 44, 23, 3, 6, 37, 24, 11, 1, 1, 5, 1, 9, 2, 1, 7, 1, 1, 11, 21, 2, 1, 16, 9, 6, 1, 3, 2, 12, 7, 18, 1, 1, 2, 3, 7, 9, 3, 17, 3, 1, 5, 8, 10, 2, 1, 5, 4, 28, 19, 1, 27, 7, 1, 4, 2, 3, 22, 1, 37, 2, 34, 21, 1, 10, 1, 3, 1, 1, 5, 5, 1, 1, 37, 6, 12, 1, 1, 9, 3, 1, 1, 1, 24, 1, 3, 1, 3, 10, 14, 1, 8, 10, 37, 20, 5, 6, 3, 3, 1, 18, 1, 1, 2, 1, 1, 1, 5, 1, 11, 5, 15, 1, 1, 8, 1, 1, 13, 8, 6, 1, 9, 1, 9, 4, 3, 39, 1, 2, 4, 1, 82, 3, 2, 11, 1, 1, 52, 2, 3, 1, 1, 2, 5, 5, 15, 30, 3, 31, 8, 6, 2, 5, 57, 29, 4, 4, 30, 11, 1, 9, 8, 7, 6, 21, 1, 6, 1, 1, 1, 14, 2, 1, 7, 52, 6, 8, 1, 1, 10, 21, 14, 68, 1, 7, 1, 7, 4, 6, 9, 4, 1, 30, 16, 5, 11, 6, 58, 1, 23, 51, 3, 1, 10, 2, 8, 1, 2, 1, 1, 12, 1, 8, 1, 5, 2, 1, 12, 1, 8, 14, 3, 1, 1, 1, 2, 6, 1, 8, 1, 2, 18, 1, 6, 1, 5, 1, 17, 1, 1, 3, 5, 77, 17, 68, 12, 4, 2, 3, 21, 2, 11, 12, 10, 1, 1, 2, 1, 1, 7, 1, 1, 31, 1, 1, 1, 20, 5, 1, 7, 1, 15, 8, 3, 9, 4, 21, 4, 3, 1, 29, 2, 2, 1, 1, 8, 2, 10, 3, 10, 6, 4, 5, 1, 1, 1, 3, 25, 2, 5, 1, 1, 2, 1, 2, 3, 5, 2, 22, 1, 2, 70, 2, 1, 49, 4, 1, 24, 1, 4, 1, 14, 4, 5, 8, 1, 2, 31, 2, 1, 17, 7, 1, 8, 1, 10, 1, 2, 9, 2, 1, 4, 2, 2, 2, 2, 2, 1, 15, 5, 9, 11, 1, 11, 2, 3, 1, 7, 1, 8, 11, 1, 7, 114, 2, 1, 3, 1, 6, 3, 1, 1, 12, 5, 1, 11, 3, 12, 3, 1, 1, 34, 3, 5, 1, 1, 3, 7, 2, 8, 6, 1, 1, 1, 6, 2, 12, 22, 4, 1, 28, 1, 11, 145, 27, 1, 3, 39, 12, 6, 1, 17, 10, 1, 5, 6, 3, 1, 2, 2, 7, 28, 1, 11, 1, 20, 1, 28, 1, 10, 36, 24, 2, 6, 23, 2, 2, 9, 6, 1, 1, 6, 7, 9, 22, 1, 6, 35, 1, 2, 1, 80, 1, 6, 11, 1, 9, 1, 5, 85, 10, 3, 7, 1, 2, 2, 1, 7, 4, 1, 3, 1, 1, 17, 3, 7, 1, 12, 1, 2, 6, 2, 4, 3, 1, 1, 3, 1, 3, 3, 1, 10, 2, 1, 4, 3, 1, 2, 1, 3, 1, 1, 1, 5, 1, 8, 10, 2, 8, 8, 5, 16, 5, 1, 20, 6, 4, 8, 14, 23, 21, 1, 26, 9, 8, 2, 3, 8, 2, 13, 37, 5, 16, 2, 1, 7, 9, 1, 1, 4, 3, 1, 6, 1, 9, 1, 1, 2, 6, 10, 4, 1, 13, 4, 5, 15, 1, 1, 16, 1, 6, 5, 15, 1, 1, 3, 1, 1, 2, 140, 33, 1, 6, 4, 3, 2, 8, 1, 2, 3, 14, 1, 1, 1, 1, 8, 14, 13, 8, 39, 5, 1, 5, 1, 37, 4, 6, 4, 1, 10, 4, 40, 1, 10, 5, 1, 1, 19, 2, 1, 11, 1, 14, 1, 2, 2, 1, 11, 1, 14, 1, 7, 9, 6, 9, 3, 47, 4, 1, 2, 4, 4, 4, 5, 5, 47, 2, 17, 2, 7, 1, 2, 1, 4, 3, 4, 7, 8, 8, 3, 6, 2, 1, 27, 1, 12, 1, 78, 1, 12, 2, 2, 1, 2, 3, 6, 2, 6, 1, 9, 18, 39, 3, 1, 2, 10, 17, 11, 3, 1, 22, 1, 5, 2, 3, 2, 3, 13, 12, 4, 2, 2, 1, 2, 10, 4, 20, 10, 5, 19, 12, 2, 4, 73, 10, 2, 6, 18, 1, 2, 2, 1, 1, 26, 1, 3, 8, 1, 3, 3, 1, 1, 1, 2, 3, 3, 1, 9, 10, 4, 3, 4, 1, 1, 2, 1, 6, 2, 6, 8, 4, 2, 4, 5, 12, 2, 9, 2, 3, 8, 1, 7, 12, 2, 1, 3, 15, 22, 6, 13, 1, 1, 1, 1, 2, 1, 2, 3, 7, 1, 3, 17, 147, 1, 1, 13, 2, 6, 4, 11, 13, 3, 1, 12, 22, 23, 12, 2, 9, 26, 1, 1, 3, 5, 31, 23, 1, 6, 11, 1, 1, 2, 3, 9, 1, 1, 30, 4, 98, 2, 8, 4, 1, 7, 1, 1, 1, 2, 2, 7, 5, 1, 1, 2, 30, 4, 4, 5, 1, 2, 4, 62, 19, 22, 2, 3, 9, 2, 2, 8, 1, 2, 23, 1, 2, 1, 1, 13, 5, 10, 15, 2, 32, 4, 3, 2, 9, 6, 5, 12, 1, 1, 18, 2, 6, 3, 6, 8, 5, 5, 13, 15, 7, 1, 2, 18, 1, 2, 7, 8, 1, 1, 20, 5, 4, 3, 2, 42, 5, 2, 12, 53, 11, 3, 1, 6, 7, 45, 1, 1, 6, 57, 3, 1, 4, 1, 6, 1, 2, 1, 31, 3, 3, 12, 18, 1, 6, 1, 4, 38, 26, 9, 14, 1, 3, 6, 7, 2, 8, 1, 1, 1, 30, 20, 3, 2, 2, 4, 14, 2, 22, 5, 4, 4, 39, 1, 1, 15, 67, 1, 12, 13, 29, 3, 5, 2, 1, 2, 1, 3, 1, 8, 6, 6, 24, 7, 2, 136, 48, 28, 7, 5, 11, 7, 1, 19, 6, 1, 2, 1, 1, 11, 3, 30, 24, 3, 2, 7, 20, 5, 2, 10, 23, 1, 74, 2, 1, 4, 2, 1, 4, 1, 3, 4, 13, 2, 3, 2, 2, 1, 11, 3, 6, 2, 4, 1, 3, 7, 7, 2, 2, 1, 11, 1, 14, 1, 1, 1, 1, 68, 5, 2, 57, 4, 2, 22, 1, 1, 7, 3, 4, 12, 1, 5, 3, 1, 1, 1, 53, 1, 1, 2, 5, 5, 1, 1, 2, 2, 3, 14, 1, 18, 5, 11, 10, 4, 1, 15, 1, 2, 1, 1, 1, 2, 6, 41, 1, 5, 5, 1, 7, 50, 2, 8, 1, 6, 4, 1, 2, 26, 101, 34, 1, 5, 6, 2, 4, 2, 1, 5, 47, 1, 13, 6, 6, 1, 10, 23, 1, 5, 2, 6, 2, 6, 1, 2, 2, 6, 2, 1, 14, 33, 4, 16, 4, 2, 6, 6, 2, 16, 12, 21, 3, 4, 7, 1, 20, 1, 13, 1, 7, 1, 23, 17, 46, 2, 3, 1, 1, 12, 8, 38, 21, 48, 1, 43, 2, 5, 2, 28, 5, 1, 1, 1, 1, 2, 28, 3, 53, 1, 11, 2, 1, 25, 1, 2, 17, 5, 1, 2, 25, 1, 3, 1, 8, 28, 1, 1, 2, 38, 8, 6, 1, 1, 2, 6, 12, 1, 1, 1, 1, 5, 7, 10, 52, 1, 1, 9, 2, 1, 5, 12, 21, 2, 1, 47, 2, 1, 17, 3, 7, 2, 1, 12, 3, 7, 5, 6, 1, 1, 1, 1, 4, 2, 5, 11, 2, 1, 7, 36, 2, 1, 9, 2, 3, 1, 1, 4, 7, 3, 10, 9, 5, 2, 11, 1, 1, 4, 26, 1, 2, 1, 94, 3, 1, 4, 6, 3, 1, 15, 4, 25, 4, 8, 1, 1, 5, 3, 1, 2, 2, 33, 7, 8, 25, 2, 3, 8, 2, 7, 1, 11, 14, 1, 1, 1, 18, 2, 4, 9, 2, 1, 10, 2, 6, 11, 28, 7, 9, 1, 13, 20, 3, 1, 2, 2, 3, 1, 1, 1, 3, 2, 14, 2, 1, 10, 3, 1, 13, 30, 1, 43, 8, 1, 8, 3, 4, 13, 17, 6, 1, 8, 3, 7, 8, 2, 2, 6, 1, 1, 6, 3, 5, 8, 10, 1, 6, 6, 2, 1, 3, 10, 1, 13, 16, 1, 42, 5, 13, 1, 2, 42, 15, 36, 11, 1, 158, 1, 12, 5, 2, 2, 11, 4, 6, 25, 4, 1, 4, 12, 3, 1, 5, 1, 44, 1, 12, 5, 2, 4, 5, 19, 19, 9, 2, 2, 4, 3, 3, 1, 3, 4, 1, 1, 5, 1, 1, 2, 13, 1, 15, 1, 1, 1, 2, 27, 1, 13, 18, 6, 3, 35, 21, 1, 1, 5, 2, 5, 1, 82, 1, 18, 5, 2, 29, 4, 4, 1, 28, 1, 2, 35, 8, 2, 6, 1, 2, 38, 1, 7, 1, 1, 5, 1, 1, 1, 9, 2, 13, 7, 3, 33, 116, 1, 7, 1, 1, 1, 1, 3, 3, 13, 4, 8, 20, 10, 30, 5, 1, 1, 1, 15, 3, 3, 2, 4, 1, 3, 1, 1, 4, 13, 3, 4, 1, 1, 2, 3, 1, 14, 7, 9, 38, 1, 2, 4, 32, 10, 13], "type": "histogram"}], "layout": {"template": {"data": {"histogram2dcontour": [{"type": "histogram2dcontour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "choropleth": [{"type": "choropleth", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "histogram2d": [{"type": "histogram2d", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmap": [{"type": "heatmap", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "heatmapgl": [{"type": "heatmapgl", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "contourcarpet": [{"type": "contourcarpet", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "contour": [{"type": "contour", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "surface": [{"type": "surface", "colorbar": {"outlinewidth": 0, "ticks": ""}, "colorscale": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]]}], "mesh3d": [{"type": "mesh3d", "colorbar": {"outlinewidth": 0, "ticks": ""}}], "scatter": [{"type": "scatter", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "parcoords": [{"type": "parcoords", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolargl": [{"type": "scatterpolargl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "bar": [{"error_x": {"color": "#2a3f5f"}, "error_y": {"color": "#2a3f5f"}, "marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "bar"}], "scattergeo": [{"type": "scattergeo", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterpolar": [{"type": "scatterpolar", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "histogram": [{"type": "histogram", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattergl": [{"type": "scattergl", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatter3d": [{"type": "scatter3d", "line": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattermapbox": [{"type": "scattermapbox", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scatterternary": [{"type": "scatterternary", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "scattercarpet": [{"type": "scattercarpet", "marker": {"colorbar": {"outlinewidth": 0, "ticks": ""}}}], "carpet": [{"aaxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "baxis": {"endlinecolor": "#2a3f5f", "gridcolor": "white", "linecolor": "white", "minorgridcolor": "white", "startlinecolor": "#2a3f5f"}, "type": "carpet"}], "table": [{"cells": {"fill": {"color": "#EBF0F8"}, "line": {"color": "white"}}, "header": {"fill": {"color": "#C8D4E3"}, "line": {"color": "white"}}, "type": "table"}], "barpolar": [{"marker": {"line": {"color": "#E5ECF6", "width": 0.5}}, "type": "barpolar"}], "pie": [{"automargin": true, "type": "pie"}]}, "layout": {"autotypenumbers": "strict", "colorway": ["#636efa", "#EF553B", "#00cc96", "#ab63fa", "#FFA15A", "#19d3f3", "#FF6692", "#B6E880", "#FF97FF", "#FECB52"], "font": {"color": "#2a3f5f"}, "hovermode": "closest", "hoverlabel": {"align": "left"}, "paper_bgcolor": "white", "plot_bgcolor": "#E5ECF6", "polar": {"bgcolor": "#E5ECF6", "angularaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "radialaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "ternary": {"bgcolor": "#E5ECF6", "aaxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "baxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}, "caxis": {"gridcolor": "white", "linecolor": "white", "ticks": ""}}, "coloraxis": {"colorbar": {"outlinewidth": 0, "ticks": ""}}, "colorscale": {"sequential": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "sequentialminus": [[0.0, "#0d0887"], [0.1111111111111111, "#46039f"], [0.2222222222222222, "#7201a8"], [0.3333333333333333, "#9c179e"], [0.4444444444444444, "#bd3786"], [0.5555555555555556, "#d8576b"], [0.6666666666666666, "#ed7953"], [0.7777777777777778, "#fb9f3a"], [0.8888888888888888, "#fdca26"], [1.0, "#f0f921"]], "diverging": [[0, "#8e0152"], [0.1, "#c51b7d"], [0.2, "#de77ae"], [0.3, "#f1b6da"], [0.4, "#fde0ef"], [0.5, "#f7f7f7"], [0.6, "#e6f5d0"], [0.7, "#b8e186"], [0.8, "#7fbc41"], [0.9, "#4d9221"], [1, "#276419"]]}, "xaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "yaxis": {"gridcolor": "white", "linecolor": "white", "ticks": "", "title": {"standoff": 15}, "zerolinecolor": "white", "automargin": true, "zerolinewidth": 2}, "scene": {"xaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "yaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}, "zaxis": {"backgroundcolor": "#E5ECF6", "gridcolor": "white", "linecolor": "white", "showbackground": true, "ticks": "", "zerolinecolor": "white", "gridwidth": 2}}, "shapedefaults": {"line": {"color": "#2a3f5f"}}, "annotationdefaults": {"arrowcolor": "#2a3f5f", "arrowhead": 0, "arrowwidth": 1}, "geo": {"bgcolor": "white", "landcolor": "#E5ECF6", "subunitcolor": "white", "showland": true, "showlakes": true, "lakecolor": "white"}, "title": {"x": 0.05}, "mapbox": {"style": "light"}}}, "title": {"text": ""}, "xaxis": {"title": {"text": "Articles per user"}, "range": [0, 50], "linecolor": "#BCCCDC", "showgrid": false}, "yaxis": {"title": {"text": ""}, "linecolor": "#BCCCDC", "showgrid": false}, "plot_bgcolor": "#FFF"}}
+    const data = histogram_figure['data']
+    const layout = histogram_figure['layout']
+    Plotly.newPlot("histogram_articles_user", data, layout)
+</script>
+
+<script>
+    var top_10_articles_by_topic = JSON.parse('{"children": [{"children": [{"children": [{"name": "Analyze open data sets with pandas dataframes", "value": 0}, {"name": "Analyze open data sets with spark \u0026 pixiedust", "value": 1}, {"name": "Analyze precipitation data", "value": 2}, {"name": "Analyze traffic data from the city of san francisco", "value": 3}, {"name": "Use spark r to load and analyze data", "value": 4}, {"name": "Analyze open data sets using pandas in a python notebook", "value": 5}, {"name": "Using dsx notebooks to analyze github data", "value": 6}, {"name": "Analyze ny restaurant data using spark in dsx", "value": 7}, {"name": "Analyze facebook data using ibm watson and watson studio", "value": 8}, {"name": "Analyze data, build a dashboard with spark and pixiedust", "value": 9}], "name": "analyze"}, {"children": [{"name": "Ibm data science experience white paper - sparkr transforming r into a tool for big data analytics", "value": 0}, {"name": "How smart catalogs can turn the big data flood into an ocean of opportunity", "value": 1}, {"name": "Deep learning with tensorflow course by big data university", "value": 2}, {"name": "Improving the roi of big data and analytics through leveraging new sources of data", "value": 3}, {"name": "How open api economy accelerates the growth of big data and analytics", "value": 4}, {"name": "Big data is better data", "value": 5}], "name": "big data"}, {"children": [{"name": "Visualize data with the matplotlib library", "value": 0}, {"name": "Visualize car data with brunel", "value": 1}], "name": "visualize"}], "name": "data"}, {"children": [{"name": "Working with sqlite databases using python and pandas", "value": 0}, {"name": "The machine learning database", "value": 1}, {"name": "Environment statistics database - water", "value": 2}, {"name": "Why relational databases and r?", "value": 3}, {"name": "Working with on-premises databases \u2014 step by step", "value": 4}, {"name": "Environment statistics database - waste", "value": 5}], "name": "database"}, {"children": [{"name": "Upload files to ibm data science experience using the command line", "value": 0}, {"name": "10 must attend data science, ml and ai conferences in 2018", "value": 1}, {"name": "Data science for real-time streaming analytics", "value": 2}, {"name": "Ibm data science experience white paper - sparkr transforming r into a tool for big data analytics", "value": 3}, {"name": "Deep learning with data science experience", "value": 5}, {"name": "This week in data science (may 30, 2017)", "value": 6}, {"name": "How to choose a project to practice data science", "value": 7}, {"name": "Data tidying in data science experience", "value": 8}, {"name": "Data science bowl 2017", "value": 9}], "name": "data science"}, {"children": [{"children": [{"name": "Top 10 machine learning algorithms for beginners", "value": 0}, {"name": "10 essential algorithms for machine learning engineers", "value": 1}, {"name": "Data structures related to machine learning algorithms", "value": 2}, {"name": "Modern machine learning algorithms", "value": 3}, {"name": "Essentials of machine learning algorithms (with python and r codes)", "value": 4}, {"name": "Building custom machine learning algorithms with apache systemml", "value": 5}], "name": "algorithm"}, {"children": [{"name": "Use xgboost, scikit-learn \u0026 ibm watson machine learning apis", "value": 0}, {"name": "Rapidly build machine learning flows with dsx", "value": 1}], "name": "api"}, {"children": [{"name": "Classify tumors with machine learning", "value": 0}], "name": "classif"}, {"children": [{"name": "Using machine learning to predict baseball injuries", "value": 0}, {"name": "Using machine learning to predict value of homes on airbnb", "value": 1}, {"name": "Adoption of machine learning to software failure prediction", "value": 2}, {"name": "Using machine learning to predict parking difficulty", "value": 3}], "name": "predict"}, {"children": [{"name": "Python machine learning: scikit-learn tutorial", "value": 0}, {"name": "Machine learning exercises in python, part 1", "value": 1}, {"name": "Essentials of machine learning algorithms (with python and r codes)", "value": 2}], "name": "python"}, {"children": [{"name": "Movie recommender system with spark machine learning", "value": 0}], "name": "recommend"}], "name": "machine learning"}, {"children": [{"children": [{"name": "Variational auto-encoder for \u0027frey faces\u0027 using keras", "value": 0}, {"name": "Using deep learning with keras to predict customer churn", "value": 1}], "name": "keras"}, {"children": [{"name": "Common excel tasks demonstrated in\u00a0pandas", "value": 0}, {"name": "Analyze open data sets with pandas dataframes", "value": 1}, {"name": "Simple graphing with ipython and\u00a0pandas", "value": 2}, {"name": "Analyze open data sets using pandas in a python notebook", "value": 3}, {"name": "The pandas data analysis library", "value": 4}, {"name": "Working with sqlite databases using python and pandas", "value": 5}], "name": "pandas"}, {"children": [{"name": "Gosales transactions for logistic regression model", "value": 0}, {"name": "How to perform a logistic regression in r", "value": 1}, {"name": "Simple linear regression? do it the bayesian way", "value": 2}, {"name": "A comparison of logistic regression and naive bayes ", "value": 3}, {"name": "Higher-order logistic regression for large datasets", "value": 4}, {"name": "Build a logistic regression model with wml \u0026 dsx", "value": 5}, {"name": "A tensorflow regression model to predict house values", "value": 6}], "name": "regression"}, {"children": [{"name": "Use xgboost, scikit-learn \u0026 ibm watson machine learning apis", "value": 0}, {"name": "Leverage python, scikit, and text classification for behavioral profiling", "value": 1}, {"name": "Python machine learning: scikit-learn tutorial", "value": 2}, {"name": "Leverage scikit-learn models with core ml", "value": 3}, {"name": "Breast cancer detection with xgboost, wml and scikit", "value": 4}, {"name": "From scikit-learn model to cloud with wml client", "value": 5}], "name": "scikit"}, {"children": [{"name": "Imitation learning in tensorflow (hopper from openai gym)", "value": 0}, {"name": "Deep learning with tensorflow course by big data university", "value": 1}, {"name": "Learn tensorflow and deep learning together and now!", "value": 2}, {"name": "Tensorflow quick tips", "value": 3}, {"name": "Perform sentiment analysis with lstms, using tensorflow", "value": 4}, {"name": "Small steps to tensorflow", "value": 5}, {"name": "Predict loan applicant behavior with tensorflow neural networking", "value": 6}, {"name": "A tensorflow regression model to predict house values", "value": 7}], "name": "tensorflow"}], "name": "libraries"}, {"children": [{"children": [{"name": "Gosales transactions for naive bayes model", "value": 0}, {"name": "Bayesian nonparametric models \u2013 stats and bots", "value": 1}, {"name": "Build a naive-bayes model with wml \u0026 dsx", "value": 2}], "name": "bayes"}, {"children": [{"name": "Neural language modeling from scratch (part 1)", "value": 0}, {"name": "Build deep learning architectures with neural network modeler", "value": 1}], "name": "neural"}, {"children": [{"name": "Gosales transactions for logistic regression model", "value": 0}, {"name": "Build a logistic regression model with wml \u0026 dsx", "value": 1}, {"name": "A tensorflow regression model to predict house values", "value": 2}], "name": "regression"}], "name": "model"}], "name": "articles"}')
+</script>
+
+<script type="module">
+
+    import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+    import notebook from "https://api.observablehq.com/@d3/collapsible-tree.js?v=3";
+
+    const runtime = new Runtime();
+    const main = runtime.module(notebook, name => {
+        if (name === "chart") {
+            return new Inspector(document.querySelector("#collapsibleTree .observablehq-chart"));
+        }
+    });
+    main.redefine("data", top_10_articles_by_topic);
+
+</script>
+
+<script>
+    var similar_users = JSON.parse('{"children": [{"imports": ["users.23", "users.46", "users.49"], "name": 1, "size": 1}, {"imports": ["users.21", "users.23", "users.38", "users.49", "users.98"], "name": 2, "size": 1}, {"imports": ["users.3", "users.23", "users.49", "users.52", "users.98"], "name": 3, "size": 1}, {"imports": ["users.4", "users.23", "users.49"], "name": 4, "size": 1}, {"imports": ["users.23", "users.49"], "name": 5, "size": 1}, {"imports": ["users.23", "users.49"], "name": 6, "size": 1}, {"imports": ["users.49", "users.52"], "name": 7, "size": 1}, {"imports": ["users.8", "users.23", "users.49", "users.98"], "name": 8, "size": 1}, {"imports": ["users.23", "users.49", "users.60", "users.98"], "name": 9, "size": 1}, {"imports": ["users.21", "users.23", "users.49", "users.98"], "name": 10, "size": 1}, {"imports": ["users.3", "users.23", "users.49", "users.60", "users.98"], "name": 11, "size": 1}, {"imports": ["users.8", "users.23"], "name": 12, "size": 1}, {"imports": ["users.8", "users.21", "users.23", "users.49", "users.52"], "name": 13, "size": 1}, {"imports": ["users.8", "users.23"], "name": 14, "size": 1}, {"imports": ["users.15", "users.21", "users.23", "users.98"], "name": 15, "size": 1}, {"imports": ["users.52", "users.65", "users.67"], "name": 16, "size": 1}, {"imports": ["users.23", "users.49", "users.98"], "name": 17, "size": 1}, {"imports": ["users.23", "users.49", "users.52", "users.98"], "name": 18, "size": 1}, {"imports": ["users.8", "users.49"], "name": 19, "size": 1}, {"imports": ["users.40"], "name": 20, "size": 1}, {"imports": ["users.23", "users.49", "users.52", "users.98"], "name": 21, "size": 1}, {"imports": ["users.23", "users.40", "users.49", "users.98"], "name": 22, "size": 1}, {"imports": ["users.49", "users.58", "users.98"], "name": 23, "size": 1}, {"imports": ["users.23", "users.24", "users.40", "users.98"], "name": 24, "size": 1}, {"imports": ["users.21", "users.23", "users.49", "users.52", "users.98"], "name": 25, "size": 1}, {"imports": ["users.23", "users.49", "users.98"], "name": 26, "size": 1}, {"imports": ["users.23", "users.64"], "name": 27, "size": 1}, {"imports": ["users.23", "users.49", "users.98"], "name": 28, "size": 1}, {"imports": ["users.49", "users.52", "users.60", "users.98"], "name": 29, "size": 1}, {"imports": ["users.23", "users.57"], "name": 30, "size": 1}, {"imports": ["users.21", "users.45"], "name": 31, "size": 1}, {"imports": ["users.21", "users.23", "users.49"], "name": 32, "size": 1}, {"imports": ["users.23", "users.49", "users.52", "users.58"], "name": 33, "size": 1}, {"imports": ["users.23", "users.49", "users.98"], "name": 34, "size": 1}, {"imports": ["users.23", "users.35", "users.40", "users.49", "users.98"], "name": 35, "size": 1}, {"imports": ["users.23", "users.49", "users.52"], "name": 36, "size": 1}, {"imports": ["users.23", "users.49", "users.58", "users.98"], "name": 37, "size": 1}, {"imports": ["users.23", "users.49", "users.98"], "name": 38, "size": 1}, {"imports": ["users.23", "users.39", "users.98"], "name": 39, "size": 1}, {"imports": ["users.23", "users.49"], "name": 40, "size": 1}, {"imports": ["users.8"], "name": 41, "size": 1}, {"imports": ["users.21", "users.23", "users.60"], "name": 42, "size": 1}, {"imports": ["users.23", "users.58", "users.98"], "name": 43, "size": 1}, {"imports": ["users.23", "users.44", "users.98"], "name": 44, "size": 1}, {"imports": ["users.23", "users.49"], "name": 45, "size": 1}, {"imports": ["users.23", "users.49", "users.98"], "name": 46, "size": 1}, {"imports": ["users.40", "users.45"], "name": 47, "size": 1}, {"imports": ["users.23", "users.49", "users.52", "users.98"], "name": 48, "size": 1}, {"imports": ["users.23", "users.52", "users.98"], "name": 49, "size": 1}, {"imports": ["users.8", "users.23", "users.49", "users.52"], "name": 50, "size": 1}, {"imports": ["users.21", "users.23", "users.98"], "name": 51, "size": 1}, {"imports": ["users.23", "users.49", "users.52", "users.98"], "name": 52, "size": 1}, {"imports": ["users.23", "users.49", "users.52"], "name": 53, "size": 1}, {"imports": ["users.1", "users.23", "users.58"], "name": 54, "size": 1}, {"imports": ["users.23", "users.52"], "name": 55, "size": 1}, {"imports": ["users.21", "users.23", "users.49"], "name": 56, "size": 1}, {"imports": ["users.23", "users.49", "users.52", "users.57", "users.58"], "name": 57, "size": 1}, {"imports": ["users.23", "users.49", "users.98"], "name": 58, "size": 1}, {"imports": ["users.49", "users.52"], "name": 59, "size": 1}, {"imports": ["users.23", "users.49", "users.98"], "name": 60, "size": 1}, {"imports": [], "name": 61, "size": 1}, {"imports": ["users.21", "users.23", "users.49", "users.52", "users.98"], "name": 62, "size": 1}, {"imports": ["users.23", "users.49", "users.98"], "name": 63, "size": 1}, {"imports": ["users.23", "users.49", "users.98"], "name": 64, "size": 1}, {"imports": ["users.23", "users.49", "users.52", "users.58"], "name": 65, "size": 1}, {"imports": ["users.23", "users.49", "users.52"], "name": 66, "size": 1}, {"imports": ["users.23", "users.49", "users.98"], "name": 67, "size": 1}, {"imports": ["users.23"], "name": 68, "size": 1}, {"imports": ["users.21", "users.23", "users.60", "users.98"], "name": 69, "size": 1}, {"imports": ["users.21", "users.23"], "name": 70, "size": 1}, {"imports": ["users.23", "users.49", "users.98"], "name": 71, "size": 1}, {"imports": ["users.23", "users.49", "users.98"], "name": 72, "size": 1}, {"imports": ["users.60", "users.98"], "name": 73, "size": 1}, {"imports": ["users.23", "users.98"], "name": 74, "size": 1}, {"imports": ["users.23", "users.49", "users.98"], "name": 75, "size": 1}, {"imports": ["users.21", "users.23", "users.76", "users.98"], "name": 76, "size": 1}, {"imports": ["users.23", "users.40", "users.49", "users.98"], "name": 77, "size": 1}, {"imports": ["users.8"], "name": 78, "size": 1}, {"imports": ["users.23", "users.98"], "name": 79, "size": 1}, {"imports": ["users.23", "users.60", "users.98"], "name": 80, "size": 1}, {"imports": [], "name": 81, "size": 1}, {"imports": ["users.23", "users.49", "users.82"], "name": 82, "size": 1}, {"imports": ["users.60", "users.98"], "name": 83, "size": 1}, {"imports": ["users.98"], "name": 84, "size": 1}, {"imports": ["users.23", "users.49", "users.85"], "name": 85, "size": 1}, {"imports": ["users.23", "users.40", "users.98"], "name": 86, "size": 1}, {"imports": ["users.23", "users.87", "users.98"], "name": 87, "size": 1}, {"imports": ["users.23", "users.49", "users.52"], "name": 88, "size": 1}, {"imports": ["users.21", "users.23", "users.60"], "name": 89, "size": 1}, {"imports": ["users.21", "users.23", "users.98"], "name": 90, "size": 1}, {"imports": ["users.21", "users.58"], "name": 91, "size": 1}, {"imports": ["users.23", "users.49", "users.52"], "name": 92, "size": 1}, {"imports": ["users.23", "users.49", "users.52", "users.98"], "name": 93, "size": 1}, {"imports": ["users.21", "users.23", "users.49"], "name": 94, "size": 1}, {"imports": ["users.23", "users.49", "users.52"], "name": 95, "size": 1}, {"imports": ["users.23", "users.49", "users.52"], "name": 96, "size": 1}, {"imports": ["users.21", "users.49", "users.98"], "name": 97, "size": 1}, {"imports": ["users.23", "users.49"], "name": 98, "size": 1}, {"imports": ["users.21", "users.23", "users.49"], "name": 99, "size": 1}, {"imports": ["users.23", "users.98"], "name": 100, "size": 1}], "name": "users"}')
+</script>
+
+<script type="module">
+
+    import {Runtime, Inspector} from "https://cdn.jsdelivr.net/npm/@observablehq/runtime@4/dist/runtime.js";
+    import notebook from "https://api.observablehq.com/@d3/hierarchical-edge-bundling.js?v=3";
+
+    const runtime = new Runtime();
+    const main = runtime.module(notebook, name => {
+        if (name === "chart") {
+            return new Inspector(document.querySelector("#edgeBundling"));
+        }
+    });
+    main.redefine("data", similar_users);
+    main.redefine("colorin", "#2f4f4f")
+</script>
+
+
+</html>
