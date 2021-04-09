@@ -9,9 +9,14 @@ with articles on the IBM Watson Studio:
 * Matrix factorization.
 * Content-based recommendations (ongoing).
 
+The main results are presented [here]()
+and the main analyses in the
+[jupyter notebook](https://github.com/oliveirampo/ibm_engine_recommendation/blob/main/scr/recommendations_with_IBM.ipynb).
+
 ### File Structure
 
-* app/ - directory with flask application for static [webpage](TODO).
+* app/ - directory with flask application for static
+  [webpage](https://oliveirampo.github.io/ibm_engine_recommendation/).
 * data/ - directory with input files.
 * docs/ - directory with static webpage.
 * scr/ - directory with scripts ans jupyter notebook.
