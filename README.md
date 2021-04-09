@@ -9,7 +9,7 @@ with articles on the IBM Watson Studio:
 * Matrix factorization.
 * Content-based recommendations (ongoing).
 
-The main results are presented [here]()
+The main results are presented [here](https://oliveirampo.github.io/ibm_engine_recommendation/)
 and the main analyses in the
 [jupyter notebook](https://github.com/oliveirampo/ibm_engine_recommendation/blob/main/scr/recommendations_with_IBM.ipynb).
 
