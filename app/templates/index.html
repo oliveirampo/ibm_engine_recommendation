@@ -1,48 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
-<style>
-.parent {
-  position: relative;
-  top: 0;
-  left: 0;
-    /*color: #00aaaa;*/
-}
-.image1 {
-  position: relative;
-  top: 0;
-  left: 0;
-}
-.image2 {
-    margin: 10px auto 20px;
-  position: absolute;
-  top: 60px;
-  left: 300px;
-}
-
-.marginauto {
-    margin: 10px auto 20px;
-    display: block;
-}
-
-#images{
-    text-align:center;
-    margin:50px auto;
-}
-#images div{
-    margin:0px 20px;
-    display:inline-block;
-    text-decoration:none;
-    color:black;
- }
-
-.observablehq-chart svg {
-    height: 100px;
-}
-
-</style>
-
 <head>
     <meta charset="UTF-8">
     <title>Recommendation Engine</title>
@@ -51,6 +9,7 @@
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<!--    <link rel="stylesheet" href="static/styles/css/bootstrap.min.css">-->
 
     <!--plotly    -->
     <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
@@ -58,7 +17,7 @@
     <!-- Custom styles for this template -->
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
     <link href="static/styles/css/blog.css" rel="stylesheet">
-    <link href="static/styles/css/table.css" rel="stylesheet">
+    <link href="static/styles/css/extra.css" rel="stylesheet">
 
 </head>
 <body>
@@ -92,26 +51,27 @@
         </div>
     </header>
 
-    <div class="nav-scroller py-1 mb-2">
-        <nav class="nav d-flex justify-content-between">
-            <a class="p-2 text-muted" href="#">Knowledge-based RS</a>
-            <a class="p-2 text-muted" href="#">Collaborative filtering RS</a>
-            <a class="p-2 text-muted" href="#">Content-based RS</a>
-            <a class="p-2 text-muted" href="#">Data</a>
-        </nav>
-    </div>
+<!--    <div class="nav-scroller py-1 mb-2">-->
+<!--        <nav class="nav d-flex justify-content-between">-->
+<!--            <a class="p-2 text-muted" href="#">Knowledge-based RS</a>-->
+<!--            <a class="p-2 text-muted" href="#">Collaborative filtering RS</a>-->
+<!--            <a class="p-2 text-muted" href="#">Content-based RS</a>-->
+<!--            <a class="p-2 text-muted" href="#">Data</a>-->
+<!--        </nav>-->
+<!--    </div>-->
 
     <div class="jumbotron p-3 p-md-5 text-white rounded bg-dark">
         <div class="col-md-6 px-0">
-          <h1 class="display-4 font-italic">Recommendation Engine with IBM</h1>
-          <p class="lead my-3">
-            A dataset with ...
-          </p>
+            <h1 class="display-4 font-italic">Recommendation Engine with IBM</h1>
+            <p class="lead my-3">
+                Making recommendations using a dataset
+                with interactions that users have with articles on the IBM Watson Studio.
+            </p>
         </div>
     </div>
 
     <div class="blog-post">
-        <h2 class="blog-post-title">Exploring and Cleaning the Data</h2>
+        <h2 class="blog-post-title">1. Exploring and Cleaning the Data</h2>
 
         <p>
             In this first part, we will take a look at the data,
@@ -130,15 +90,11 @@
         <ul>
           <li><strong>df</strong>: maps users to articles.</li>
 
-            <p>
             {{ df.head(5).to_html(notebook=True, table_id="mytable") | safe }}
-            </p>
 
           <li><strong>df_content</strong>: contains information about articles.</li>
 
-            <p>
             {{ df_content.head(5).to_html(notebook=True, table_id="mytable") | safe }}
-            </p>
         </ul>
 
         <h4>General Information</h4>
@@ -156,7 +112,7 @@
             <img class="marginauto"
                 alt="number_of_users_and_articles"
                 height="auto"
-                src="{{ url_for('static', filename='images/numbers_user_articles.png') }}">
+                src="{{ url_for('static', filename='/images/numbers_user_articles.png') }}">
         </div>
 
         <div class="parent center">
@@ -196,12 +152,12 @@
             <li>Remove any rows that have the same article id, and only keep the first entry.</li>
         </ol>
 
-        <h2>Rank-Based Recommendations</h2>
+        <h2>2. Rank-Based Recommendations</h2>
 
         <p>
             When building a recommendation system, the most straightforward step
             is to build a non-personalized recommendation.
-            It is easy, does not require specific knowledge about the users.
+            It is easy and does not require specific knowledge about the users.
             This is useful not only to provide a general picture of the data,
             but also to provide initial recommendations to new users.
         </p>
@@ -245,7 +201,7 @@
 
         &nbsp
 
-        <h2>User-User Based Collaborative Filtering</h2>
+        <h2>3. User-User Based Collaborative Filtering</h2>
 
         <p>
             Another way to recommend articles to a user is by
@@ -287,10 +243,10 @@
         <p>
             The results for each user in the above table are binary, that is why
             it makes sense to compute similarity as the dot product of two users.
-            The figure below shows the most similar users for the 100 users.
         </p>
 
         <p>
+            The figure below shows the most similar users for the first 100 users.
             When you hover over the user id,
             the <span style="color:red;">red lines</span> show the closest neighbor to the given user,
             and the  <span style="color:#2f4f4f;">green lines</span> show that the given user is one of the most similar users
@@ -313,7 +269,7 @@
         <h4>Recommend Articles</h4>
 
         <p>
-            One we know the most similar users to a given user,
+            Once we know the most similar users to a given user,
             we can recommend their new articles to this user.
             For users with same similarity we chose first:
         </p>
@@ -324,7 +280,193 @@
         </ul>
 
 
-        <h2>Matrix Factorization</h2>
+        <h2>4. Matrix Factorization</h2>
+
+        <p>
+            Another way to make recommendations consists of using matrix factorization
+            with the Singular Value Decomposition (SVD) method.
+            The basic idea is that by looking at the behavioral data of the users,
+            one can find hidden categories that can be used to explain user's taste.
+            These hidden trends in the data are called latent features.
+            They are also latent because even if they make sense data-wise,
+            it might not be so easy to say what these factors mean.
+            For more information see
+            <a href="https://learning.oreilly.com/library/view/practical-recommender-systems/9781617292705/">
+                Practical Recommender Systems book.</a>
+        </p>
+
+        <p>
+            A matrix can be factorized into three matrices
+            (Ref.:
+            <a href="https://learning.oreilly.com/library/view/practical-recommender-systems/9781617292705/">
+                Practical Recommender Systems
+            </a>
+            ):
+        </p>
+
+        <figure>
+            <img class="center"
+             src="static/images/matrix_factorization.png" alt="svd_accuracy">
+        </figure>
+
+        <ul>
+            <li>M - A martix you want to decompose.</li>
+            <li>U - User feature matrix.</li>
+            <li>&Sigma; - Weights diagonal.</li>
+            <li>V<sup>T</sup> - Item feature matrix.</li>
+        </ul>
+
+        <p>
+            The idea is that the central diagonal matrix &Sigma; contains elements
+            (called singular values)
+            that are sorted from the largest to the smallest.
+            They indicate how much information these features produce for the data set.
+            A feature here means both a column in the user matrix U
+            and a row in the content matrix V<sup>T</sup>.
+            After decomposition, one can select only the features with highest score,
+            thus the size of the matrices can be reduced.
+            See
+            <a href="https://learning.oreilly.com/library/view/practical-recommender-systems/9781617292705/">
+                Practical Recommender Systems
+            </a>
+            , for instance, for more details.
+        </p>
+
+        <p>
+            The advantage of SVD is that it is possible to add new users easily.
+            However this method is slow to calculate, and when the dataset is large
+            it will be time-consuming.
+            Another issue is that the entries cannot have missing values.
+            As solutions to this problem one can choose one the following options:
+
+            <ul>
+                <li>Calculate the mean of each item (or user)
+                    and fill this mean value where there are missing values; </li>
+                <li>Normalize each row, such that all elements are centered around zero,
+                    so the zeros wil become the average;</li>
+                <li>Extract the biases for the items and users,
+                    and provide a baseline for the predictions.</li>
+
+            </ul>
+        </p>
+
+        For more details see
+        <a href="https://learning.oreilly.com/library/view/practical-recommender-systems/9781617292705/">
+            Practical Recommender Systems
+        </a>.
+
+        <p>
+            One key decision when using SVD is the number of latent features to retain.
+            One way to define that is to divide the data into training and test sets,
+            and selected the number of features with highest accuracy for both sets.
+            The accuracy of the train and test sets as a function of
+            the number of features for the dataset used in this project is shown above.
+        </p>
+
+        <img class="center"
+             src="static/images/svd_accuracy.png" alt="svd_accuracy">
+
+        <p>
+            The results above show that
+            the higher the number of features,
+            the higher the accuracy in the train set
+            and the lower the accuracy in the test set.
+            And if the decision of the number of features is entirely based on the results
+            for the test set, then the fewer the better.
+            However, it is worth mentioning that the size of the test set is too small
+            (20 users only),
+            and the &Sigma; matrix should still retain about 90% of the information.
+            Thus such decision must be taken carefully, considering both aspects.
+        </p>
+
+        <p>
+            With the factorization in place,
+            we can look it up in the new users-items matrix to make predictions,
+            making use of the reduced matrices only.
+        </p>
+
+        <h2>5. Conclusion</h2>
+
+        <p>
+            In this project we implemented four systems to make recommendations:
+        </p>
+
+        <ul>
+            <li>Rank-based recommendation.</li>
+            <li>User-user based collaborative filtering.</li>
+            <li>Content-based collaborative filtering.</li>
+            <li>Matrix Factorization.</li>
+        </ul>
+
+        <p>
+            The combination of all these four systems could be used together
+            to make recommendations to existing and to new users.
+        </p>
+
+        <p>
+            To test the quality of the recommendations an online experiment could be performed.
+            The users of the platform would be divided in two groups,
+            one where the users receive no recommendation,
+            and the other where the users receive indications
+            from a combination of the recommendation systems implemented.
+            After a reasonable period of time,
+            an A/B test could be used to access the increase in the number of articles read.
+            The metric to measure the success of the experiment
+            could be the difference in the mean of the number of articles the user interacts with
+            in each group, after the defined period of time.
+            In this case,
+            the null hypothesis is that the difference in the means is no greater than 0,
+            and the alternative is that there is a difference in the means of both groups.
+        </p>
+
+        <h2>Extra: Content-Based Recommendations</h2>
+
+        <p>
+            Natural Language Processing (NLP) was used to extract relevant information
+            about the description of the articles to subsequently build a content based recommender.
+            The following steps were taken:
+        </p>
+
+        <ul>
+            <li>Data cleaning:
+                duplicate rows removed;
+                links, non alphanumerics, punctuations, and stop words removed;
+                stemming.
+            </li>
+            <li>
+                Convert the description of the articles into sparse word-vectors,
+                then apply dimensionality reduction techniques to find K topics:
+                First the text of the description of each article was converted into word vectors
+                using TFIDF (term frequency, inverse document frequency),
+                then SVD (singular value decomposition) or NMF (non-negative matrix factorization)
+                was applied to reduce the content of the articles into a few categories.
+            </li>
+        </ul>
+
+        <p>
+            After these steps,
+            each article will be associated to a vector which contains weights
+            that determines the connection to each of the K topics defined earlier.
+            The similarity between any two article can be computed from this projection
+            using cosine similarity.
+        </p>
+
+        <p>
+            This is still an ongoing part of the project, and some steps are still missing:
+        </p>
+
+        <ul>
+            <li>Apply different techniques to vectorize the text.</li>
+            <li>Apply different dimensionality reduction techniques</li>
+            <li>Evaluate the accuracy of the final models.</li>
+        </ul>
+
+        <p>
+            However, the steps implemented so far
+            can already give an idea of how to extract information from the items
+            to create similar items recommendations.
+            For more detail, please look at the Jupyter Notebook at Part IV.
+        </p>
 
 
     </div>
