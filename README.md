@@ -30,7 +30,7 @@ and the main analyses in the
 
 Python 3.8.8
 
-The list of packages and recommended versions are listed in file app/requirements.txt
+The list of packages and recommended versions are listed in file requirements.txt
 
 ### Installation
 
